@@ -1,4 +1,7 @@
-const deck = Array.from({ length: 52 }, (_, i) => i + 1);
+interface Player {
+  score: number;
+  cards: number[];
+}
 
 function shuffleDeck(deck: number[]): number[] {
   for (let i = deck.length - 1; i > 0; i--) {
@@ -8,16 +11,24 @@ function shuffleDeck(deck: number[]): number[] {
   return deck;
 }
 
-const shuffledDeck = shuffleDeck(deck);
-
-const middleIndex = Math.ceil(shuffledDeck.length / 2);
-
-const player1Stack = shuffledDeck.slice(0, middleIndex);
-const player2Stack = shuffledDeck.slice(middleIndex);
-
 function playGame() {
-  let player1Score = 0;
-  let player2Score = 0;
+  const deck = Array.from({ length: 52 }, (_, i) => i + 1);
+  const shuffledDeck = shuffleDeck(deck);
+
+  const middleIndex = Math.ceil(shuffledDeck.length / 2);
+  const player1Stack = shuffledDeck.slice(0, middleIndex);
+  const player2Stack = shuffledDeck.slice(middleIndex);
+
+  const player1: Player = {
+    score: 0,
+    cards: player1Stack,
+  };
+
+  const player2: Player = {
+    score: 0,
+    cards: player2Stack,
+  };
+
   while (player1Stack.length > 0 && player2Stack.length > 0) {
     let round = 1;
     const player1Card = player1Stack.pop()!;
@@ -28,19 +39,19 @@ function playGame() {
 
     if (player1Card > player2Card) {
       console.log('Player 1 wins this round!');
-      player1Score += 1;
+      player1.score += 1;
     } else {
       console.log('Player 2 wins this round!');
-      player2Score += 1;
+      player2.score += 1;
     }
   }
 
   console.log(`\nFinal Score:`);
-  console.log(`Player 1: ${player1Score} - Player 2: ${player2Score}`);
+  console.log(`Player 1: ${player1.score} - Player 2: ${player2.score}`);
 
-  if (player1Score > player2Score) {
+  if (player1.score > player2.score) {
     console.log('Player 1 wins the game!');
-  } else if (player2Score > player1Score) {
+  } else if (player2.score > player1.score) {
     console.log('Player 2 wins the game!');
   } else {
     console.log('It is a draw!');
