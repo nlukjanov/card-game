@@ -11,6 +11,13 @@ function shuffleDeck(deck: number[]): number[] {
   return deck;
 }
 
+function compareCards(
+  player1Card: number,
+  player2Card: number,
+): 'player1' | 'player2' {
+  return player1Card > player2Card ? 'player1' : 'player2';
+}
+
 function playGame() {
   const deck = Array.from({ length: 52 }, (_, i) => i + 1);
   const shuffledDeck = shuffleDeck(deck);
@@ -34,14 +41,16 @@ function playGame() {
   }
 
   while (player1.cards.length > 0 && player2.cards.length > 0) {
-    let round = 1;
+    const round = 1;
     const player1Card = player1.cards.pop()!;
     const player2Card = player2.cards.pop()!;
+
+    const winner = compareCards(player1Card, player2Card);
 
     console.log(`\nRound ${round}:`);
     console.log(`Player 1: ${player1Card} - Player 2: ${player2Card}`);
 
-    if (player1Card > player2Card) {
+    if (winner === 'player1') {
       console.log('Player 1 wins this round!');
       player1.score += 1;
     } else {
