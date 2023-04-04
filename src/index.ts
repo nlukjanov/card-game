@@ -15,24 +15,28 @@ function playGame() {
   const deck = Array.from({ length: 52 }, (_, i) => i + 1);
   const shuffledDeck = shuffleDeck(deck);
 
-  const middleIndex = Math.ceil(shuffledDeck.length / 2);
-  const player1Stack = shuffledDeck.slice(0, middleIndex);
-  const player2Stack = shuffledDeck.slice(middleIndex);
-
   const player1: Player = {
     score: 0,
-    cards: player1Stack,
+    cards: [],
   };
 
   const player2: Player = {
     score: 0,
-    cards: player2Stack,
+    cards: [],
   };
 
-  while (player1Stack.length > 0 && player2Stack.length > 0) {
+  for (let i = 0; i < 52; i++) {
+    if (i % 2 === 0) {
+      player1.cards.push(shuffledDeck[i]);
+    } else {
+      player2.cards.push(shuffledDeck[i]);
+    }
+  }
+
+  while (player1.cards.length > 0 && player2.cards.length > 0) {
     let round = 1;
-    const player1Card = player1Stack.pop()!;
-    const player2Card = player2Stack.pop()!;
+    const player1Card = player1.cards.pop()!;
+    const player2Card = player2.cards.pop()!;
 
     console.log(`\nRound ${round}:`);
     console.log(`Player 1: ${player1Card} - Player 2: ${player2Card}`);
