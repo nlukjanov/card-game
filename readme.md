@@ -15,6 +15,8 @@ Your task is to simulate this game in a language of your choice. The outputs of 
 - When each round is played you should print each players card value along with an indication which player won that round.
 - When all rounds are played you should print each players final score along with an indication of which player won overall.
 
+<br>
+
 ### Description
 
 The game simulation is implemented in NodeJS with TypeScript.
@@ -34,6 +36,8 @@ For production, first execute the following command to build TypeScript project
 Then run
 
 `npm run start:prod`
+
+In the terminal output you will see the results of each round and the final winner of the game.
 
 ### Testing
 
