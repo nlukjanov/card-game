@@ -1,9 +1,9 @@
-interface Player {
+export interface Player {
   score: number;
   cards: number[];
 }
 
-function shuffleDeck(deck: number[]): number[] {
+export function shuffleDeck(deck: number[]): number[] {
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];
@@ -11,7 +11,7 @@ function shuffleDeck(deck: number[]): number[] {
   return deck;
 }
 
-function compareCards(
+export function compareCards(
   player1Card: number,
   player2Card: number,
 ): 'player1' | 'player2' {
