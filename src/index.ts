@@ -40,8 +40,8 @@ function playGame() {
     }
   }
 
+  let round = 1;
   while (player1.cards.length > 0 && player2.cards.length > 0) {
-    const round = 1;
     const player1Card = player1.cards.pop()!;
     const player2Card = player2.cards.pop()!;
 
@@ -57,6 +57,7 @@ function playGame() {
       console.log('Player 2 wins this round!');
       player2.score += 1;
     }
+    round += 1;
   }
 
   console.log(`\nFinal Score:`);
